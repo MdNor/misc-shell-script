@@ -1,0 +1,6 @@
+#!/bin/bash
+
+AWS_INSTANCE_NAME=<instance-name>
+/usr/local/bin/aws ec2 create-image --block-device-mappings "[{\"DeviceName\": \"/dev/sda1\",\"Ebs\":{\"DeleteOnTermination\":false}}]" --instance-id <instance-id> --no-reboot --name $AWS_INSTANCE_NAME-weekly-$(date +%Y%m%d-%H%M%S)
+
+exit
