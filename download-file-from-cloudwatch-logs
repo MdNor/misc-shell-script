@@ -1,0 +1,15 @@
+#!/bin/bash
+
+date=$(date --rfc-3339=date)
+
+date_year=$(date --rfc-3339=date | cut -d"-" -f1)
+date_month=$(date --rfc-3339=date | cut -d"-" -f2)
+date_day=$(date --rfc-3339=date | cut -d"-" -f3)
+
+# Get name of group
+group=$(saw groups | grep <keyword> | tail -1)
+
+# Download from CloudWatch
+saw get "$group" --start "$date"T00:00:00Z --stop "$date"T23:59:59Z >> /<destination-path/$date_year/$date_month/$date_day/000000
+
+exit
